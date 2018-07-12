@@ -1,62 +1,35 @@
 import React, { Component } from 'react'
 import Loading from './loading/'
-
-const styles = {
-  map: {
-    width: '100vw',
-    height: '100vh',
-  }
-}
+import Map from './Map'
 
 class MapLoader extends Component {
 
-  mapRef = null
-  timeout = null
+  interval = null
 
   state = {
-    map: null,
+    loaded: false,
   }
 
-  getMapRef = node => this.mapRef = node
-
-  isMapHere = () => {
+  isMapLoaded = () => {
     if(window.google.maps) {
-      clearTimeout(this.timeout)
+      clearInterval(this.interval) //stop running the interval if the map is available
       this.setState({
-        map: window.google.maps,
+        loaded: true, //changing state here tells the component to rerender
       })
-      this.loadMap()
     }
     else {
       console.log('map is not here');
     }
   }
 
-  loadMap = () => {
-    const map = this.state.map
-    const node = this.mapRef
-
-    const mapConfig = {
-      zoom: 12,
-      center: new map.LatLng(40.75, -111.87)
-    }
-
-    new map.Map(node, mapConfig)
-  }
-
   componentDidMount(){
-    this.timeout = setTimeout( () => this.isMapHere(), 1000)
+    this.interval = setInterval( () => this.isMapLoaded(), 500) //check to see if map is loaded every half second
   }
 
   render() {
     return (
-      this.state.map ?
-        <div
-          style={styles.map}
-          ref={node => this.getMapRef(node)}
-          >
-          the map will be here
-        </div>
+      this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
+        <Map />
         :
         <Loading />
     )
