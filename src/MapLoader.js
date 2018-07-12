@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Loading from './loading/'
 
 const styles = {
   map: {
@@ -57,11 +58,9 @@ class MapLoader extends Component {
           the map will be here
         </div>
         :
-        <div >
-          ...Map is loading
-        </div>
+        <Loading />
     )
   }
 }
 
-export default Map
+export default MapLoader
