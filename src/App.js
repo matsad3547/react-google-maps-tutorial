@@ -55,7 +55,7 @@ class App extends Component {
           <h1
             className="App-title"
             style={styles.title}
-            >Welcome to a React Google Maps Tutorial</h1>
+            >React Google Maps Tutorial</h1>
           <Button
             label="Clear Points"
             onClick={this.clearPoints}

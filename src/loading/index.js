@@ -16,6 +16,9 @@ const Loading = () => (
   <div
     style={styles.main}
     >
+    <div>
+      The map is loading...
+    </div>
     <img src={logo} className="spinner" alt="logo" style={styles.logo}/>
   </div>
 )

@@ -3,23 +3,40 @@ import PropTypes from 'prop-types'
 import Loading from '../loading/'
 import Map from './Map'
 
+const styles = {
+  warning: {
+    textAlign: 'center',
+    color: 'red',
+    fontSize: '2em',
+  }
+}
+
 class MapLoader extends Component {
 
   interval = null
+  counter = 0
 
   state = {
     loaded: false,
+    mapNotAvailable: false,
   }
 
   isMapLoaded = () => {
-    if(window.google.maps) {
+    if(window.google && window.google.maps) {
       clearInterval(this.interval) //stop running the interval if the map is available
       this.setState({
         loaded: true, //changing state here tells the component to rerender
       })
     }
+    else if (this.counter > 20) {
+      this.setState({
+        mapNotAvailable: true,
+      })
+      clearInterval(this.interval)
+    }
     else {
-      console.log('map is not here');
+      this.counter = this.counter + 1
+      console.log('map is not here', this.counter);
     }
   }
 
@@ -29,12 +46,16 @@ class MapLoader extends Component {
 
   render() {
     return (
-      this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
+      this.state.mapNotAvailable ?
+      <div style={styles.warning}>
+        Something has gone wrong loading your the map
+      </div> :
+      (this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
         <Map>
-          {this.props.children} 
+          {this.props.children}
         </Map>
         :
-        <Loading />
+        <Loading />)
     )
   }
 }
