@@ -49,7 +49,9 @@ class Map extends Component {
         style={styles.map}
         ref={node => this.getMapRef(node)}
         >
-        {this.state.map ? childrenWithProps : null}
+        {this.state.map ? childrenWithProps : null
+          //don't render children until the map is present
+        }
       </div>
     )
   }

@@ -3,13 +3,18 @@ import PropTypes from 'prop-types'
 
 class MapClickHandler extends Component {
 
+  clickListener = null
+
   componentDidMount() {
 
     const { map } = this.props
 
-    if (map) {
-      map.addListener('click', this.props.onClick)
-    }
+    this.clickListener = map.addListener('click', this.props.onClick)
+  }
+
+  componentWillUnmount() {
+    this.props.map.event.removeListener(this.clickListener)
+    //remove the map listener when the component goes away
   }
 
   render(){

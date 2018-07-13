@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+
 import MapLoader from './map/MapLoader'
 import MapClickHandler from './map/MapClickHandler'
+import MapMarkerRenderer from './map/MapMarkerRenderer'
+
 import Button from './Button'
 
 const styles = {
@@ -24,8 +27,6 @@ class App extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng(),
     }
-    console.log('event:', e, '\npoint:', point);
-
 
     if (this.state.points.length < 2) {
       //here I'm passing a function to `setState` to ensure that react keeps the order
@@ -43,6 +44,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         <header
@@ -62,6 +64,14 @@ class App extends Component {
           <MapClickHandler
             onClick={this.setPoint}
             />
+          { this.state.points.map( (point, i) =>
+              <MapMarkerRenderer
+                point={point}
+                index={i}
+                key={`marker-${i}`}
+                />
+            )
+          }
         </MapLoader>
       </div>
     )
