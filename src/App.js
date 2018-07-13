@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import MapLoader from './MapLoader'
+import MapLoader from './map/MapLoader'
+import MapClickHandler from './map/MapClickHandler'
+import Button from './Button'
 
 const styles = {
   header: {
@@ -11,6 +13,35 @@ const styles = {
 }
 
 class App extends Component {
+
+  state = {
+    points: [],
+  }
+
+  setPoint = e => {
+
+    const point = {
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+    }
+    console.log('event:', e, '\npoint:', point);
+
+
+    if (this.state.points.length < 2) {
+      //here I'm passing a function to `setState` to ensure that react keeps the order
+        this.setState(prevState => ({
+          points: [...prevState.points, point]
+        })
+      )
+    }
+  }
+
+  clearPoints = () => {
+    this.setState({
+      points: [],
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -22,11 +53,19 @@ class App extends Component {
             className="App-title"
             style={styles.title}
             >Welcome to a React Google Maps Tutorial</h1>
+          <Button
+            label="Clear Points"
+            onClick={this.clearPoints}
+            />
         </header>
-        <MapLoader/>
+        <MapLoader>
+          <MapClickHandler
+            onClick={this.setPoint}
+            />
+        </MapLoader>
       </div>
     )
   }
 }
 
-export default App;
+export default App

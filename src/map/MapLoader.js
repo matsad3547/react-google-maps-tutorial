@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Loading from './loading/'
+import PropTypes from 'prop-types'
+import Loading from '../loading/'
 import Map from './Map'
 
 class MapLoader extends Component {
@@ -29,11 +30,20 @@ class MapLoader extends Component {
   render() {
     return (
       this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
-        <Map />
+        <Map>
+          {this.props.children} 
+        </Map>
         :
         <Loading />
     )
   }
+}
+
+MapLoader.propTypes = { //Provide a type for child components - if there is just one child, it is a single node; if there are more than one, there is an array of them
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ])
 }
 
 export default MapLoader

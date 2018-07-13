@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 const styles = {
   map: {
-    width: '100vw',
-    height: '100vh',
+    width: '90vw',
+    height: '80vh',
+    marginLeft: '5vw',
   }
 }
 
@@ -37,11 +38,18 @@ class Map extends Component {
   }
 
   render() {
+    const { children } = this.props
+
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, {map: this.state.map })
+    )
+
     return (
       <div
         style={styles.map}
         ref={node => this.getMapRef(node)}
         >
+        {this.state.map ? childrenWithProps : null}
       </div>
     )
   }
