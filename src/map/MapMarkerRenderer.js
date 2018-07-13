@@ -44,7 +44,7 @@ class MapMarkerRenderer extends Component {
   componentWillUnmount() {
     this.clearMarker()
   }
-  
+
   render(){
     return false
   }

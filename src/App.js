@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import MapLoader from './map/MapLoader'
 import MapClickHandler from './map/MapClickHandler'
 import MapMarkerRenderer from './map/MapMarkerRenderer'
+import MapLineRenderer from './map/MapLineRenderer'
 
 import Button from './Button'
 
@@ -72,6 +73,9 @@ class App extends Component {
                 />
             )
           }
+          <MapLineRenderer
+            points={this.state.points}
+            />
         </MapLoader>
       </div>
     )
