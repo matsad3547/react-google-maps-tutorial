@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../loading/'
 import Map from './Map'
+import scriptCache, { getGoogleUrl } from '../utils/'
 
 const styles = {
   warning: {
@@ -18,7 +19,7 @@ class MapLoader extends Component {
 
   state = {
     loaded: false,
-    mapNotAvailable: false,
+    error: null,
   }
 
   isMapLoaded = () => {
@@ -40,15 +41,23 @@ class MapLoader extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.interval = setInterval( () => this.isMapLoaded(), 500) //check to see if map is loaded every half second
+  }
+
+  componentWillMount() {
+    const url = getGoogleUrl()
+    this.scriptCache = scriptCache({
+      google: url
+    });
+    // getScript()
   }
 
   render() {
     return (
-      this.state.mapNotAvailable ?
+      this.state.error ?
       <div style={styles.warning}>
-        Something has gone wrong loading your the map
+        Something has gone wrong loading your the map: {`${this.state.error.message}`}
       </div> :
       (this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
         <Map>

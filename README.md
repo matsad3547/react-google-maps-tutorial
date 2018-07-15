@@ -17,6 +17,8 @@ This app uses the following method to run Google Maps:
 
 ## References
 
+In addition to the references here, there are links in various places in the comments in the code.  I have tried to comment the places where particularly important pieces are happening and aspects that are not particularly intuitive as well as more advanced ES6 javascript usages that might not be familiar to everyone.
+
 * [This book](https://legacy.gitbook.com/book/developmentarc/react-indepth/details) is one of my favorite guides to the react lifecycle, a solid understanding of which is very helpful for manipulating the Google Maps API as seen here.
 * [Ari Lerner's](https://twitter.com/auser) tutorial [How to Write a Google Maps React Component](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/) was very helpful for remembering how all these pieces fit together and for providing a basis for the script-loading functionality used here.
 * Thanks also to my boss Patrick Brown at [Blyncsy](https://www.blyncsy.com/) who originally showed me this method and that we've been using successfully for over a year.
@@ -25,7 +27,7 @@ This app uses the following method to run Google Maps:
 * Clone the project
 * Go to the project directory and run `$ yarn`
 * Once the project has built, add a `.env` file in the main directory and add the line `REACT_APP_GOOGLE_MAPS_API_KEY="<your google maps api key>"`  A key can be obtained [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
-* Run `$ yarn start`
+* Run `$ yarn start`.  If the `.env` file is added after the project has been started, `REACT_APP_GOOGLE_MAPS_API_KEY` will not be available; in that case the server will need to be restarted.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
