@@ -30,7 +30,7 @@ class App extends Component {
     }
 
     if (this.state.points.length < 2) {
-      //here I'm passing a function to `setState` to ensure that react keeps the order
+      //here I'm passing a function to `setState` to ensure that react keeps state changes in order
         this.setState(prevState => ({
           points: [...prevState.points, point]
         })
@@ -38,11 +38,7 @@ class App extends Component {
     }
   }
 
-  clearPoints = () => {
-    this.setState({
-      points: [],
-    })
-  }
+  clearPoints = () => this.setState({ points: [], })
 
   render() {
 
@@ -56,6 +52,7 @@ class App extends Component {
             className="App-title"
             style={styles.title}
             >React Google Maps Tutorial</h1>
+          Click the map to add points
           <Button
             label="Clear Points"
             onClick={this.clearPoints}

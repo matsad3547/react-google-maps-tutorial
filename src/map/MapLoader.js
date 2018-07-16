@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../loading/'
 import Map from './Map'
-import scriptCache, { getGoogleUrl } from '../utils/'
+import {
+  getGoogleUrl,
+  addScriptTag,
+} from '../utils/'
 
 const styles = {
   warning: {
@@ -22,42 +25,25 @@ class MapLoader extends Component {
     error: null,
   }
 
-  isMapLoaded = () => {
-    if(window.google && window.google.maps) {
-      clearInterval(this.interval) //stop running the interval if the map is available
-      this.setState({
-        loaded: true, //changing state here tells the component to rerender
-      })
-    }
-    else if (this.counter > 20) {
-      this.setState({
-        mapNotAvailable: true,
-      })
-      clearInterval(this.interval)
-    }
-    else {
-      this.counter = this.counter + 1
-      console.log('map is not here', this.counter);
-    }
-  }
+  onLoad = () => this.setState({ loaded: true })
 
-  componentDidMount() {
-    this.interval = setInterval( () => this.isMapLoaded(), 500) //check to see if map is loaded every half second
+  onError = e => {
+    console.error('error:', e)
+    this.setState({
+      error: e
+    })
   }
 
   componentWillMount() {
     const url = getGoogleUrl()
-    this.scriptCache = scriptCache({
-      google: url
-    });
-    // getScript()
+    addScriptTag(url, this.onLoad, this.onError)
   }
 
   render() {
     return (
       this.state.error ?
       <div style={styles.warning}>
-        Something has gone wrong loading your the map: {`${this.state.error.message}`}
+        Something has gone wrong loading your the map, please check the console
       </div> :
       (this.state.loaded ? //if the map is available on the window object, render the Map component; otherwise render Loading
         <Map>

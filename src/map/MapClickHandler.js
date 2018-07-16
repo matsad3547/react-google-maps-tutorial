@@ -23,7 +23,7 @@ class MapClickHandler extends Component {
 }
 
 MapClickHandler.propTypes = {
-  map: PropTypes.object,
+  map: PropTypes.object, //the map object is initially null
   onClick: PropTypes.func.isRequired, //a click function is necessary for this component - obviously
 }
 

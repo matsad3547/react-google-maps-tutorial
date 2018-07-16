@@ -23,6 +23,7 @@ class MapLineRenderer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // this method is fired when props change after a component is mounted - the perfect place to listen to props changes
 
     const {
       points,
@@ -32,6 +33,7 @@ class MapLineRenderer extends Component {
       this.drawLine(points)
     }
     else if (points.length === 0 && this.props.points.length === 2 ) {
+      // by comparing props and nextProps, changes in upstream components can be detected and responded to
       this.clearLine()
     }
   }
