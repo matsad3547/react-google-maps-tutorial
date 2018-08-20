@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import MapLoader from './map/MapLoader'
 import MapClickHandler from './map/MapClickHandler'
@@ -16,7 +16,7 @@ const styles = {
   },
 }
 
-class App extends Component {
+class App extends PureComponent {
 
   state = {
     points: [],

@@ -1,7 +1,7 @@
-import { Component } from 'react'
+import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class MapClickHandler extends Component {
+class MapClickHandler extends PureComponent {
 
   clickListener = null
 

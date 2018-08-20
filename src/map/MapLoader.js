@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../loading/'
 import Map from './Map'
@@ -15,7 +15,7 @@ const styles = {
   }
 }
 
-class MapLoader extends Component {
+class MapLoader extends PureComponent {
 
   interval = null
   counter = 0
@@ -28,7 +28,7 @@ class MapLoader extends Component {
   onLoad = () => this.setState({ loaded: true })
 
   onError = e => {
-    console.error('error:', e)
+    console.error('there was an error loading the map:', e)
     this.setState({
       error: e
     })
@@ -36,7 +36,10 @@ class MapLoader extends Component {
 
   componentWillMount() {
     const url = getGoogleUrl()
-    addScriptTag(url, this.onLoad, this.onError)
+    // addScriptTag(url, this.onLoad, this.onError)
+    addScriptTag(url)
+      .then(this.onLoad)
+      .catch(this.onError)
   }
 
   render() {

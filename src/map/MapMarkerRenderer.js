@@ -1,9 +1,9 @@
-import { Component } from 'react'
+import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 //This component will not mount until there is a point where it can render a marker
 
-class MapMarkerRenderer extends Component {
+class MapMarkerRenderer extends PureComponent {
 
   marker = null
 

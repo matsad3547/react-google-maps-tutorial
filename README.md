@@ -22,7 +22,7 @@ In addition to the references here, there are links in various places in the com
 * [This book](https://legacy.gitbook.com/book/developmentarc/react-indepth/details) is one of my favorite guides to the react lifecycle, a solid understanding of which is very helpful for manipulating the Google Maps API as seen here.
 * [Ari Lerner's](https://twitter.com/auser) tutorial [How to Write a Google Maps React Component](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/) was very helpful for remembering how all these pieces fit together and for providing a basis for the [script-loading functionality](https://gist.github.com/auser/1d55aa3897f15d17caf21dc39b85b663) used here.
 * [This post](http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/#sthash.SYdMtwDg.dpbs) was also helpful with the script-loading portion.
-* Thanks also to my boss Patrick Brown at [Blyncsy](https://www.blyncsy.com/) who originally showed me this method and that we've been using successfully for over a year.
+* Thanks also to my boss Patrick Brown at [Blyncsy](https://www.blyncsy.com/) who originally showed me this method which we've been using successfully for over a year.
 
 ## Instructions
 * Clone the project

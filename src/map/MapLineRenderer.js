@@ -1,9 +1,9 @@
-import { Component } from 'react'
+import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 // this component renders a line between two points and erases that point once there are no longer any points.  Reference: https://developers.google.com/maps/documentation/javascript/shapes#polylines
 
-class MapLineRenderer extends Component {
+class MapLineRenderer extends PureComponent {
 
   line = null
 
