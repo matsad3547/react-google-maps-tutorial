@@ -23,6 +23,7 @@ In addition to the references here, there are links in various places in the com
 * [Ari Lerner's](https://twitter.com/auser) tutorial [How to Write a Google Maps React Component](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/) was very helpful for remembering how all these pieces fit together and for providing a basis for the [script-loading functionality](https://gist.github.com/auser/1d55aa3897f15d17caf21dc39b85b663) used here.
 * [This post](http://zcourts.com/2011/10/06/dynamically-requireinclude-a-javascript-file-into-a-page-and-be-notified-when-its-loaded/#sthash.SYdMtwDg.dpbs) was also helpful with the script-loading portion.
 * Thanks also to my boss Patrick Brown at [Blyncsy](https://www.blyncsy.com/) who originally showed me this method which we've been using successfully for over a year.
+* I rewrote the script loading function with ES6 promise notation.  I wasn't very good with this before but thanks to [MPJ](https://twitter.com/mpjme) and his video on [promises](https://www.youtube.com/watch?v=2d7s3spWAzo), I'm a little more up to speed and I think it makes for more composable and generic code.
 
 ## Instructions
 * Clone the project
